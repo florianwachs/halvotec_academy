@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IUser } from "../../models/user";
+import { LoginContext } from "../../models/LoginInformation";
+import { LoginInfo } from "../LoginInfo/LoginInfo";
 
 interface IUserDetailProps {
   user: IUser;
@@ -9,12 +11,13 @@ export const UserDetail: React.FC<IUserDetailProps> = ({ user, onClose }) => {
   return (
     <div>
       <h1>Details</h1>
+      <LoginInfo />
       <h5>
         <button onClick={() => onClose()}>BACK</button>
       </h5>
       <ul>
         <li>
-          {user.name.first} {user.name.last}{" "}
+          {user.name.first} {user.name.last}
         </li>
       </ul>
     </div>

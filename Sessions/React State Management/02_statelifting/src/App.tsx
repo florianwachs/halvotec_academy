@@ -1,12 +1,20 @@
 import React from "react";
 import "./App.css";
 import { Users } from "./components/Users/Users";
+import { LoginContext } from "./models/LoginInformation";
+
+const loggedInUser = {
+  user: "Uli",
+  token: "TOP_SECRET"
+};
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Users />
-    </div>
+    <LoginContext.Provider value={loggedInUser}>
+      <div className="App">
+        <Users />
+      </div>
+    </LoginContext.Provider>
   );
 };
 
