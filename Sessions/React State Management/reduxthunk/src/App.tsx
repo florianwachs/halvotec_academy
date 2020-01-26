@@ -1,13 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { UsersList } from "./components/Users/UsersList";
+import { Provider } from "react-redux";
+import { rootStore } from "./store/store";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <UsersList />
-    </div>
+    <Provider store={rootStore}>
+      <div className="App">
+        <UsersList />
+      </div>
+    </Provider>
   );
 };
 

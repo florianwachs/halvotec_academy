@@ -1,28 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { getUsers } from "../../services/userService";
+import React from "react";
 import { IUser } from "../../models/user";
-import useSWR from "swr";
-import { UserDetail } from "./UserDetail";
+import { connect } from "react-redux";
+import { RootState } from "../../store/store";
+import { ThunkDispatch } from "redux-thunk";
+import { loadUsers } from "../../store/users/actions";
 
-export const UsersList: React.FC<{}> = () => {
-  const { data } = useSWR("users", getUsers);
-  const [user, setUser] = useState<IUser>();
+interface IUsersListProps {
+  loadUsers: () => void;
+  users: IUser[];
+}
 
-  if (!data) {
-    return <div>Is LOaDiNg</div>;
+const UsersListRaw: React.FC<IUsersListProps> = ({ users, loadUsers }) => {
+  if (users.length === 0) {
+    return <button onClick={loadUsers}>Load Users</button>;
   }
 
-  if (user) {
-    return <UserDetail user={user} onClose={() => setUser(undefined)} />;
-  }
+  // TODO: Implement this with redux on your own
+  //   if (user) {
+  //     return <UserDetail user={user} onClose={() => setUser(undefined)} />;
+  //   }
 
   return (
     <ul>
-      {data.map((user, idx) => (
-        <li onClick={() => setUser(user)} key={idx}>
-          {user.email}
-        </li>
+      {users.map((user, idx) => (
+        <li key={idx}>{user.email}</li>
       ))}
     </ul>
   );
 };
+
+function mapStateToProps(state: RootState) {
+  return {
+    users: state.users.users
+  };
+}
+
+function mapDispatchToProps(dispatch: ThunkDispatch<{}, {}, any>) {
+  return {
+    loadUsers: () => dispatch(loadUsers())
+  };
+}
+
+export const UsersList = connect(mapStateToProps, mapDispatchToProps)(UsersListRaw);
