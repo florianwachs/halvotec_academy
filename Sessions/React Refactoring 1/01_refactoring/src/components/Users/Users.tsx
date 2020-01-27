@@ -32,11 +32,11 @@ export const Users: React.FC = () => {
       <div>
         <h1>Details</h1>
         <h5>
-          <button onClick={() => setUser(undefined)}>BACK</button>
+          <button onClick={() => setUser(undefined)}>Zurück</button>
         </h5>
         <ul>
           <li>
-            {user.name.first} {user.name.last}{" "}
+            {user.name.first} {user.name.last}
           </li>
         </ul>
       </div>
@@ -44,15 +44,18 @@ export const Users: React.FC = () => {
   }
 
   return (
-    <ul>
-      {users.map((user, idx) => (
-        <li onClick={() => setUser(user)} key={idx}>
-          <div>{user.email}</div>
-          <div>
-            {user.name.first} {user.name.last}
-          </div>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Liste</h1>
+      <ul>
+        {users.map((user, idx) => (
+          <li onClick={() => setUser(user)} key={idx}>
+            <div>{user.email}</div>
+            <div>
+              {user.name.first} {user.name.last}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
