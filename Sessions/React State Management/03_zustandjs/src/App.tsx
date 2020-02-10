@@ -1,12 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { UsersList } from "./components/Users/UsersList";
+import { Users } from "./components/Users";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <UsersList />
+      <Users />
     </div>
   );
 };

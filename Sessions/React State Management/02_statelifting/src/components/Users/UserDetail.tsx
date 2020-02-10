@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { IUser } from "../../models/user";
-import { LoginContext } from "../../models/LoginInformation";
 import { LoginInfo } from "../LoginInfo/LoginInfo";
 
 interface IUserDetailProps {

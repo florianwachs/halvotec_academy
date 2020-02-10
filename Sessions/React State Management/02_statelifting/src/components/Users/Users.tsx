@@ -3,10 +3,11 @@ import useSWR from "swr";
 import { getUsers } from "../../services/userService";
 import { UserDetail } from "./UserDetail";
 import { UsersList } from "./UsersList";
+import { IUser } from "../../models/user";
 
 export const Users: React.FC = () => {
   const { data: users, error, revalidate } = useSWR("users", getUsers);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<IUser | null>();
 
   if (error) {
     return <h1>Shit Happens</h1>;

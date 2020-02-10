@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { getUsers } from "../../services/userService";
+import React, {  } from "react";
 import { IUser } from "../../models/user";
-import useSWR from "swr";
-import { UserDetail } from "./UserDetail";
 
-export const UsersList: React.FC<{}> = () => {
-  const { data } = useSWR("users", getUsers);
-  const [user, setUser] = useState<IUser>();
-
-  if (!data) {
-    return <div>Is LOaDiNg</div>;
-  }
-
-  if (user) {
-    return <UserDetail user={user} onClose={() => setUser(undefined)} />;
-  }
-
+export const UsersList: React.FC<{ users: IUser[]; onUserSelected: (user: IUser) => void }> = ({ users, onUserSelected }) => {
   return (
     <ul>
-      {data.map((user, idx) => (
-        <li onClick={() => setUser(user)} key={idx}>
+      {users.map((user, idx) => (
+        <li onClick={() => onUserSelected(user)} key={idx}>
           {user.email}
         </li>
       ))}

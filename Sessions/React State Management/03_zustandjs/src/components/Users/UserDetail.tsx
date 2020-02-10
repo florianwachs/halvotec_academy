@@ -14,7 +14,7 @@ export const UserDetail: React.FC<IUserDetailProps> = ({ user, onClose }) => {
       </h5>
       <ul>
         <li>
-          {user.name.first} {user.name.last}{" "}
+          {user.name.first} {user.name.last}
         </li>
       </ul>
     </div>
